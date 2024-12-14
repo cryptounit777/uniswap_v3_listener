@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  ethereum-tracker:
+    build: .
+    container_name: ethereum_transaction_tracker
+    restart: unless-stopped
+    environment:
+      - RUST_LOG=info
