@@ -1,85 +1,85 @@
 # Ethereum Transaction Tracker
 
-Инструмент для мониторинга транзакций Ethereum, написанный на Rust. Отслеживает и анализирует транзакции, связанные с определенным смарт-контрактом.
+This is a small excerpt from an Ethereum transaction monitoring tool written in Rust, which was developed during an educational cycle. It tracks and analyzes transactions related to a specific smart contract.
 
-## Возможности
+## Features
 
-- 🔍 Мониторинг транзакций в реальном времени
-- 🎯 Фильтрация транзакций по адресу контракта
-- 💰 Отслеживание передачи ETH и токенов ERC20
-- 📊 Сортировка транзакций по сумме
-- 🔍 Подробная информация о каждой транзакции
+- 🔍 Real-time transaction monitoring
+- 🎯 Transaction filtering by contract address
+- 💰 Tracking ETH and ERC20 token transfers
+- 📊 Transaction sorting by amount
+- 🔍 Detailed transaction information
 
-## Предварительные требования
+## Prerequisites
 
-- Rust (последняя стабильная версия)
-- Docker (опционально)
-- Ключ API Infura
+- Rust (latest stable version)
+- Docker (optional)
+- Infura API key
 
-## Установка
+## Installation
 
-1. Клонируйте репозиторий:
+1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/ethereum-transaction-tracker
+git clone https://github.com/cryptounit777/uniswap_v3_listener.git
 cd ethereum-transaction-tracker
 ```
 
-2. Настройте переменные окружения:
+2. Set up environment variables:
 
 ```bash
-export TARGET_CONTRACT_ADDRESS=0x...  # Адрес отслеживаемого контракта
+export TARGET_CONTRACT_ADDRESS=0x...  # Target contract address
 ```
 
-## Использование
+## Usage
 
-### Запуск локально
+### Local Run
 
 ```bash
 cargo run
 ```
 
-### Запуск через Docker
+### Docker Run
 
 ```bash
 docker-compose up
 ```
 
-## Функциональность
+## Functionality
 
-### Мониторинг транзакций
+### Transaction Monitoring
 
-Программа подключается к сети Ethereum через WebSocket Infura и отслеживает все входящие транзакции в реальном времени. Для каждой транзакции выполняется:
+The program connects to the Ethereum network via Infura WebSocket and monitors all incoming transactions in real-time. For each transaction, it performs:
 
-1. Проверка соответствия целевому адресу контракта
-2. Сбор подробной информации о транзакции
-3. Анализ передачи токенов (если это ERC20 транзакция)
+1. Verification against target contract address
+2. Collection of detailed transaction information
+3. Token transfer analysis (if it's an ERC20 transaction)
 
-### Информация о транзакциях
+### Transaction Information
 
-Для каждой отслеживаемой транзакции выводится:
+For each monitored transaction, the following information is displayed:
 
-- Базовая информация:
-  - Хеш транзакции
-  - Адрес отправителя
-  - Адрес получателя
-  - Сумма в ETH
+- Basic Information:
+  - Transaction hash
+  - From address
+  - To address
+  - Amount in ETH
   
-- Технические детали:
-  - Цена газа (Gwei)
-  - Использованный газ
+- Technical Details:
+  - Gas price (Gwei)
+  - Gas used
   - Nonce
-  - Номер блока
-  - Индекс транзакции
+  - Block number
+  - Transaction index
   - Chain ID
 
-- Информация о токенах (для ERC20):
-  - Адрес токена
-  - Сумма передачи
+- Token Information (for ERC20):
+  - Token address
+  - Transfer amount
 
-### Обработка ошибок
+### Error Handling
 
-Программа включает типизированную обработку ошибок для следующих случаев:
+The program includes typed error handling for the following cases:
 
 ```rust
 #[derive(Error, Debug)]
@@ -90,28 +90,16 @@ enum TrackerError {
 }
 ```
 
-## Структура кода
+## Code Structure
 
-Основные компоненты:
+Main components:
 
-- `main()`: Точка входа и основной цикл мониторинга
-- `print_transaction_info()`: Форматированный вывод информации о транзакции
-- `extract_token_info()`: Извлечение информации о передаче токенов
-- Обработка ошибок через `TrackerError`
+- `main()`: Entry point and main monitoring loop
+- `print_transaction_info()`: Formatted transaction information output
+- `extract_token_info()`: Token transfer information extraction
+- Error handling through `TrackerError`
 
-## Ограничения
+## Limitations
 
-- Программа останавливается после сбора 5 транзакций (для демонстрации)
-- Поддерживается только стандартная функция transfer ERC20 токенов
-
-## Участие в разработке
-
-Приветствуются pull request'ы. Для крупных изменений, пожалуйста, сначала создайте issue для обсуждения предлагаемых изменений.
-
-## Лицензия
-
-MIT
-
-## Безопасность
-
-Если вы обнаружили уязвимость безопасности, пожалуйста, отправьте email вместо создания публичного issue.
+- Program stops after collecting 5 transactions (for demonstration purposes)
+- Only standard ERC20 token transfer function is supported
